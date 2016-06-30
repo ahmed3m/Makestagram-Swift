@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         Parse.initializeWithConfiguration(configuration)
         
+        // Fake login
         do {
             try PFUser.logInWithUsername("test", password: "test")
         } catch {
