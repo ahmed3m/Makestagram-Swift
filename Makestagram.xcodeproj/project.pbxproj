@@ -33,6 +33,7 @@
 		62C8C1ED1B06BD6500DC3EA7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62C8C1EC1B06BD6500DC3EA7 /* Images.xcassets */; };
 		62C8C1F01B06BD6500DC3EA7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62C8C1EE1B06BD6500DC3EA7 /* LaunchScreen.xib */; };
 		62C8C1FC1B06BD6500DC3EA7 /* MakestagramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C8C1FB1B06BD6500DC3EA7 /* MakestagramTests.swift */; };
+		E2084E251D2583AC007E95FF /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2084E241D2583AC007E95FF /* Post.swift */; };
 		E21181F41D2408F100BEE5EF /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21181F31D2408F100BEE5EF /* TimelineViewController.swift */; };
 		E21181F61D24090500BEE5EF /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21181F51D24090500BEE5EF /* PhotoViewController.swift */; };
 		E21181F81D24092100BEE5EF /* FriendSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21181F71D24092100BEE5EF /* FriendSearchViewController.swift */; };
@@ -97,6 +98,7 @@
 		6E4CEF5D8F8908EE7FD09709 /* Pods_Makestagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Makestagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		778C49E3CC82B38CCACB43B5 /* Pods_MakestagramTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MakestagramTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF2867DA9E9308E9939AF331 /* Pods-MakestagramTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MakestagramTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MakestagramTests/Pods-MakestagramTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E2084E241D2583AC007E95FF /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		E21181F31D2408F100BEE5EF /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		E21181F51D24090500BEE5EF /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		E21181F71D24092100BEE5EF /* FriendSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchViewController.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 		62C8C1E21B06BD6500DC3EA7 /* Makestagram */ = {
 			isa = PBXGroup;
 			children = (
+				E2084E231D258378007E95FF /* Models */,
 				E216419C1D24217D00B5FF45 /* PhotoTaking */,
 				6277189C1B0A58E800AF5C6E /* Helpers */,
 				627718811B0A581600AF5C6E /* ViewControllers */,
@@ -263,6 +266,14 @@
 				62C8C1FA1B06BD6500DC3EA7 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E2084E231D258378007E95FF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E2084E241D2583AC007E95FF /* Post.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		E216419C1D24217D00B5FF45 /* PhotoTaking */ = {
@@ -331,6 +342,7 @@
 				TargetAttributes = {
 					62C8C1DF1B06BD6500DC3EA7 = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = 6WB5HZ3Q83;
 					};
 					62C8C1F41B06BD6500DC3EA7 = {
 						CreatedOnToolsVersion = 6.3;
@@ -482,6 +494,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				627718901B0A581600AF5C6E /* Filter.swift in Sources */,
+				E2084E251D2583AC007E95FF /* Post.swift in Sources */,
 				E21181F81D24092100BEE5EF /* FriendSearchViewController.swift in Sources */,
 				627718A01B0A58E800AF5C6E /* ParseLoginHelper.swift in Sources */,
 				627718911B0A581700AF5C6E /* FilterCollectionViewCell.swift in Sources */,
@@ -622,14 +635,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Makestagram/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "Make-School.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.AhmedAbdelrahman.Makestagram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Makestagram/Makestagram-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -641,14 +657,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Makestagram/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "Make-School.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.AhmedAbdelrahman.Makestagram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Makestagram/Makestagram-Bridging-Header.h";
 			};
 			name = Release;

@@ -33,20 +33,18 @@ class PhotoTakingHelper : NSObject {
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         alertController.addAction(cancelAction)
         
-        let photoLibraryAction = UIAlertAction(title: "Photo from Library", style: .Default) { (action) in
-            self.showImagePickerController(.PhotoLibrary)
-        }
-        
-        alertController.addAction(photoLibraryAction)
-        
         // Only show camera option if rear camera is available
         if (UIImagePickerController.isCameraDeviceAvailable(.Rear)) {
             let cameraAction = UIAlertAction(title: "Photo from Camera", style: .Default) { (action) in
                 self.showImagePickerController(.Camera)
             }
-            
             alertController.addAction(cameraAction)
         }
+        
+        let photoLibraryAction = UIAlertAction(title: "Photo from Library", style: .Default) { (action) in
+            self.showImagePickerController(.PhotoLibrary)
+        }
+        alertController.addAction(photoLibraryAction)
         
         viewController.presentViewController(alertController, animated: true, completion: nil)
     }
