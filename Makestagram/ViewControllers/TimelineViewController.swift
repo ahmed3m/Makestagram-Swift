@@ -44,6 +44,14 @@ class TimelineViewController: UIViewController {
         // kicking off the network request
         query.findObjectsInBackgroundWithBlock {(result: [PFObject]?, error: NSError?) -> Void in
             self.posts = result as? [Post] ?? [] // if result is nill, we have empty array/no posts
+            for post in self.posts { // looping through the posts
+                do {
+                    let data = try post.imageFile?.getData()  // downloading the NSData of the image
+                    post.image = UIImage(data: data!, scale: 1.0) // converting to UIImage
+                } catch {
+                    print("could not get image")
+                }
+            }
             self.tableView.reloadData() // reload the table to reflect the new results
         }
     }
@@ -82,8 +90,8 @@ extension TimelineViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("PostCell")!
-        cell.textLabel!.text = "Post"
+        let cell = tableView.dequeueReusableCellWithIdentifier("PostCell") as! PostTableViewCell
+        cell.postImageView.image = posts[indexPath.row].image
         return cell
     }
 }
