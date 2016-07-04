@@ -8,6 +8,7 @@
 
 import Foundation
 import Parse
+import Bond
 
 class Post: PFObject, PFSubclassing { // need to inherit from those classes to create a custom class for Parse
     
@@ -15,7 +16,7 @@ class Post: PFObject, PFSubclassing { // need to inherit from those classes to c
     @NSManaged var imageFile: PFFile?
     @NSManaged var user: PFUser?
     
-    var image: UIImage? // stores the image
+    var image: Observable<UIImage?> = Observable(nil)
     var photoUploadTask: UIBackgroundTaskIdentifier? // used to request long running background task
 
     //MARK: PFSubclassing Protocol
@@ -40,7 +41,7 @@ class Post: PFObject, PFSubclassing { // need to inherit from those classes to c
     }
     
     func uploadPost() {
-        if let image = image {
+        if let image = image.value {
             guard let imageData = UIImageJPEGRepresentation(image, 0.8) else { return } // convert JPEG to NSData
             guard let imageFile = PFFile(name: "image.jpg", data: imageData) else { return } // convert NSData to PFFile
             
@@ -56,4 +57,17 @@ class Post: PFObject, PFSubclassing { // need to inherit from those classes to c
                 UIApplication.sharedApplication().endBackgroundTask(self.photoUploadTask!)
             }
         }
-    }}
+    }
+    
+    func downloadImage() {
+        // if image is not downloaded yet, get it
+        if (image.value == nil) {
+            imageFile?.getDataInBackgroundWithBlock { (data: NSData?, error: NSError?) -> Void in
+                if let data = data {
+                    let image = UIImage(data: data, scale:1.0)!
+                    self.image.value = image
+                }
+            }
+        }
+    }
+}
