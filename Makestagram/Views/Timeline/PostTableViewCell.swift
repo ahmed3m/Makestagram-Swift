@@ -8,11 +8,16 @@
 
 import UIKit
 import Bond
+import Parse
 
 class PostTableViewCell: UITableViewCell {
 
     @IBOutlet weak var postImageView: UIImageView!
-    
+    @IBOutlet weak var likesIconImageView: UIImageView!
+    @IBOutlet weak var likesLabel: UILabel!
+    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var moreButton: UIButton!
+
     var post: Post? {
         didSet {
             if let post = post {
@@ -33,4 +38,12 @@ class PostTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func moreButtonTapped(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func likeButtonTapped(sender: AnyObject) {
+        post?.toggleLikePost(PFUser.currentUser()!)
+
+    }
 }

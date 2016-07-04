@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Photo View Controller-->
@@ -59,23 +60,108 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="320" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DAL-NH-zRB">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="470" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DAL-NH-zRB">
                                 <rect key="frame" x="0.0" y="20" width="600" height="531"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="320" id="Y6h-fb-Smz" customClass="PostTableViewCell" customModule="Makestagram" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="320"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="470" id="Y6h-fb-Smz" customClass="PostTableViewCell" customModule="Makestagram" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="470"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Y6h-fb-Smz" id="hCy-fP-KtH">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="319"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="469"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qsl-0G-UiO">
-                                                    <rect key="frame" x="0.0" y="-8" width="600" height="336"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qsl-0G-UiO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="344"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="344" id="aBd-jA-e6u"/>
+                                                        <constraint firstAttribute="height" constant="344" id="eJR-O9-nPL"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="eJR-O9-nPL"/>
+                                                        </mask>
+                                                    </variation>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ODu-P3-jzu">
+                                                    <rect key="frame" x="544" y="401" width="44" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="44" id="Dxs-45-QvH"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="S7d-7b-yFI"/>
+                                                        <constraint firstAttribute="height" constant="44" id="TKD-xo-cYl"/>
+                                                        <constraint firstAttribute="width" constant="44" id="XB5-kw-scT"/>
+                                                        <constraint firstAttribute="height" constant="44" id="ue2-EC-BWb"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="ul3-Vu-0wS"/>
+                                                    </constraints>
+                                                    <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                                                    <state key="normal" image="heart"/>
+                                                    <state key="selected" image="heart_selected"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="S7d-7b-yFI"/>
+                                                            <exclude reference="XB5-kw-scT"/>
+                                                            <exclude reference="ue2-EC-BWb"/>
+                                                            <exclude reference="ul3-Vu-0wS"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <connections>
+                                                        <action selector="likeButtonTapped:" destination="Y6h-fb-Smz" eventType="touchUpInside" id="gI6-hG-dM0"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VVt-Vd-co0">
+                                                    <rect key="frame" x="8" y="407" width="44" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="Zu0-qH-89O"/>
+                                                        <constraint firstAttribute="width" constant="44" id="fDx-At-Osb"/>
+                                                    </constraints>
+                                                    <state key="normal" image="more"/>
+                                                    <connections>
+                                                        <action selector="moreButtonTapped:" destination="Y6h-fb-Smz" eventType="touchUpInside" id="X05-na-3hK"/>
+                                                    </connections>
+                                                </button>
+                                                <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="9TS-Q2-gLm">
+                                                    <rect key="frame" x="20" y="367" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="G8s-KH-plD"/>
+                                                        <constraint firstAttribute="height" constant="20" id="R5s-Jw-nvg"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test User" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sT0-Cg-gfE">
+                                                    <rect key="frame" x="60" y="366" width="482" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="b5e-PO-lYe"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                    <color key="textColor" red="0.58823529411764708" green="0.58823529411764708" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Qsl-0G-UiO" secondAttribute="trailing" id="4re-rm-3Cp"/>
+                                                <constraint firstItem="VVt-Vd-co0" firstAttribute="leading" secondItem="hCy-fP-KtH" secondAttribute="leadingMargin" id="4vA-Ie-Goh"/>
+                                                <constraint firstItem="Qsl-0G-UiO" firstAttribute="top" secondItem="hCy-fP-KtH" secondAttribute="top" id="8IM-iw-wKh"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ODu-P3-jzu" secondAttribute="bottom" constant="16" id="JDh-66-vzH"/>
+                                                <constraint firstItem="VVt-Vd-co0" firstAttribute="top" secondItem="9TS-Q2-gLm" secondAttribute="bottom" constant="20" id="OMQ-uJ-5TM"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ODu-P3-jzu" secondAttribute="trailing" constant="4" id="PyK-b2-U8T"/>
+                                                <constraint firstItem="sT0-Cg-gfE" firstAttribute="leading" secondItem="9TS-Q2-gLm" secondAttribute="trailing" constant="20" id="T7e-NS-lCQ"/>
+                                                <constraint firstItem="VVt-Vd-co0" firstAttribute="top" secondItem="9TS-Q2-gLm" secondAttribute="bottom" constant="20" id="oAJ-V8-r5Q"/>
+                                                <constraint firstItem="9TS-Q2-gLm" firstAttribute="leading" secondItem="hCy-fP-KtH" secondAttribute="leadingMargin" constant="12" id="r3D-N0-HMb"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="VVt-Vd-co0" secondAttribute="bottom" constant="10" id="rER-af-N4A"/>
+                                                <constraint firstItem="VVt-Vd-co0" firstAttribute="top" secondItem="sT0-Cg-gfE" secondAttribute="bottom" constant="20" id="rph-tW-2y0"/>
+                                                <constraint firstItem="Qsl-0G-UiO" firstAttribute="leading" secondItem="hCy-fP-KtH" secondAttribute="leading" id="tXt-fV-cGC"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="sT0-Cg-gfE" secondAttribute="trailing" constant="50" id="u7l-N6-sqm"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="OMQ-uJ-5TM"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="likeButton" destination="ODu-P3-jzu" id="iIX-03-Jgm"/>
+                                            <outlet property="likesIconImageView" destination="9TS-Q2-gLm" id="LBI-Wv-Bjg"/>
+                                            <outlet property="likesLabel" destination="sT0-Cg-gfE" id="fae-PY-6Oc"/>
+                                            <outlet property="moreButton" destination="VVt-Vd-co0" id="qiH-ZF-nIh"/>
                                             <outlet property="postImageView" destination="Qsl-0G-UiO" id="K72-D7-ZKB"/>
                                         </connections>
                                     </tableViewCell>
@@ -126,7 +212,10 @@
     </scenes>
     <resources>
         <image name="camera" width="40" height="30"/>
+        <image name="heart" width="72" height="68"/>
+        <image name="heart_selected" width="72" height="68"/>
         <image name="home" width="38" height="36"/>
+        <image name="more" width="26" height="17"/>
         <image name="people" width="42" height="42"/>
     </resources>
 </document>
