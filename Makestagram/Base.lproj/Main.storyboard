@@ -168,6 +168,7 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="oFW-j8-Rqd" id="Iw8-Cc-kAJ"/>
+                                    <outlet property="delegate" destination="oFW-j8-Rqd" id="qaB-iF-amx"/>
                                 </connections>
                             </tableView>
                         </subviews>

@@ -33,7 +33,7 @@ class ParseHelper {
     // User Relation
     static let ParseUserUsername      = "username"
     
-    static func timelineRequestForCurrentUser(completionBlock: PFQueryArrayResultBlock) {
+    static func timelineRequestForCurrentUser(range: Range<Int>, completionBlock: PFQueryArrayResultBlock) {
         
         // this query grabs users that the current user is following
         let followingQuery = PFQuery(className: ParseFollowClass)
@@ -52,6 +52,9 @@ class ParseHelper {
         
         query.includeKey(ParsePostUser)  // downloads the content of the user instead of the pointer
         query.orderByDescending(ParsePostCreatedAt)  // newest post at the top
+        
+        query.skip = range.startIndex // determines where to start
+        query.limit = range.endIndex - range.startIndex  // determines how many elements to load
         
         // kicking off the network request
         query.findObjectsInBackgroundWithBlock(completionBlock)
