@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
+    // This method is called when the app is being launched
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // Set up the Parse SDK
@@ -30,12 +31,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Unable to log in")
         }
         
+        // Testing if user logged in successfully
         if let currentUser = PFUser.currentUser() {
             print("\(currentUser.username!) logged in successfully")
         } else {
             print("No logged in user :(")
         }
         
+        // modifies the acl (access control lists)
         let acl = PFACL()
         acl.publicReadAccess = true
         PFACL.setDefaultACL(acl, withAccessForCurrentUser: true)
