@@ -9,6 +9,7 @@
 import Foundation
 import Parse
 import Bond
+import ConvenienceKit
 
 class Post: PFObject, PFSubclassing { // need to inherit from those classes to create a custom class for Parse
     
@@ -19,6 +20,8 @@ class Post: PFObject, PFSubclassing { // need to inherit from those classes to c
     var image: Observable<UIImage?> = Observable(nil)
     var likes: Observable<[PFUser]?> = Observable(nil)
     var photoUploadTask: UIBackgroundTaskIdentifier? // used to request long running background task
+
+    static var imageCache: NSCacheSwift<String, UIImage>!
 
     //MARK: PFSubclassing Protocol
     
@@ -36,8 +39,8 @@ class Post: PFObject, PFSubclassing { // need to inherit from those classes to c
     override class func initialize() {
         var onceToken : dispatch_once_t = 0;
         dispatch_once(&onceToken) {
-            // inform Parse about this subclass
-            self.registerSubclass()
+            self.registerSubclass()   // inform Parse about this subclass
+            Post.imageCache = NSCacheSwift<String, UIImage>()
         }
     }
     
@@ -61,12 +64,15 @@ class Post: PFObject, PFSubclassing { // need to inherit from those classes to c
     }
     
     func downloadImage() {
+        image.value = Post.imageCache[self.imageFile!.name]
+
         // if image is not downloaded yet, get it
         if (image.value == nil) {
             imageFile?.getDataInBackgroundWithBlock { (data: NSData?, error: NSError?) -> Void in
                 if let data = data {
                     let image = UIImage(data: data, scale:1.0)!
                     self.image.value = image
+                    Post.imageCache[self.imageFile!.name] = image
                 }
             }
         }
