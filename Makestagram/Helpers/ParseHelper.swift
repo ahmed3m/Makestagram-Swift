@@ -68,7 +68,7 @@ class ParseHelper {
         likeObject[ParseLikeFromUser] = user
         likeObject[ParseLikeToPost] = post
         
-        likeObject.saveInBackgroundWithBlock(nil)
+        likeObject.saveInBackgroundWithBlock(ErrorHandling.errorHandlingCallback)
     }
     
     // This method is used when unliking a post. It deletes the like object
@@ -80,9 +80,12 @@ class ParseHelper {
         
         // once finding the object, delete it in the background
         query.findObjectsInBackgroundWithBlock { (results: [PFObject]?, error: NSError?) -> Void in
+            if let error = error {
+                ErrorHandling.defaultErrorHandler(error)
+            }
             if let results = results {
                 for like in results {
-                    like.deleteInBackgroundWithBlock(nil)
+                    like.deleteInBackgroundWithBlock(ErrorHandling.errorHandlingCallback)
                 }
             }
         }
@@ -120,7 +123,7 @@ class ParseHelper {
         let followObject = PFObject(className: ParseFollowClass)
         followObject.setObject(user, forKey: ParseFollowFromUser)
         followObject.setObject(toUser, forKey: ParseFollowToUser)
-        followObject.saveInBackgroundWithBlock(nil)
+        followObject.saveInBackgroundWithBlock(ErrorHandling.errorHandlingCallback)
     }
     
     /**
@@ -134,9 +137,12 @@ class ParseHelper {
         query.whereKey(ParseFollowFromUser, equalTo:user)
         query.whereKey(ParseFollowToUser, equalTo: toUser)
         query.findObjectsInBackgroundWithBlock { (results: [PFObject]?, error: NSError?) -> Void in
+            if let error = error {
+                ErrorHandling.defaultErrorHandler(error)
+            }
             let results = results ?? []
             for follow in results {
-                follow.deleteInBackgroundWithBlock(nil)
+                follow.deleteInBackgroundWithBlock(ErrorHandling.errorHandlingCallback)
             }
         }
     }
